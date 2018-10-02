@@ -11,15 +11,20 @@
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver"/>
 	</bean>
 	
-	<bean id="hikariDataSource2" class="com.zaxxer.hikari.HikariDataSource">
-		<property name="jdbcUrl" value="jdbc:mariadb://localhost:3306/bdi"/>
-		<property name="username" value="bdi"/>
-		<property name="password" value="bditest"/>
-		<property name="driverClassName" value="org.mariadb.jdbc.Driver"/>
+	<bean id="dataSourceProxy" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="hikariDataSource"/>
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE"/>
+				<property name="sqlPrefix" value="CUSTOM SQL LOG==>"/>
+			</bean>
+		</property>
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="hikariDataSource"/>
+		<property name="dataSource" ref="dataSourceProxy"/>
+		<property name="configLocation" value="classpath:mybatis/mybatis.xml"/>
+		<property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"></property>
 	</bean>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">

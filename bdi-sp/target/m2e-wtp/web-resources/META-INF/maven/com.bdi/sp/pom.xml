@@ -162,7 +162,12 @@
 			<scope>test</scope>
 		</dependency>
 
-
+		<!-- 7. jdbc log : jdbc-remix -->
+		<dependency>
+			<groupId>org.lazyluke</groupId>
+			<artifactId>log4jdbc-remix</artifactId>
+			<version>0.2.7</version>
+		</dependency>
 
 	</dependencies>
 	<build>
