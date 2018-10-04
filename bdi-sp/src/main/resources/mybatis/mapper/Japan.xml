@@ -25,7 +25,7 @@
 		where jpnum=#{jpnum}
 	</update>
 
-	<delete id="deleteJapan" parameterType="japan">
+	<delete id="deleteJapan" parameterType="int">
 		delete from japan
 		where jpnum=#{jpnum}
 	</delete>

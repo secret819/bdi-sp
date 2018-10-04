@@ -27,7 +27,7 @@ public class JapanTest {
 		j.setJpname("테스트");
 		j.setJpdesc("tttt");
 		List<Japan> biList = ss.selectList("SQL.JAPAN.selectJapan",j);
-		assertEquals(biList.size(), 1);
+		assertEquals(biList.size(), 0);
 	}
 	
 //	@Test 
