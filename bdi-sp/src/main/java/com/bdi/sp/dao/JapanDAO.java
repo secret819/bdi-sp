@@ -11,4 +11,8 @@ public interface JapanDAO {
 	public int deleteJapan(int jpnum);
 	
 	public int updateJapan(Japan j);
+
+	public Japan getJapan(int jpnum);
+
+	public String insertJapan(Japan jp);
 }
