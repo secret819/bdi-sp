@@ -17,11 +17,11 @@ window.addEventListener('load',function(){
 				var res = JSON.parse(xhr.responseText);
 				var html = '';
 				for(var j of res){
-					html += "<tr>";
+					html += '<tr>';
 					html += '<td>' + j.jpnum + '</td>';
-					html += '<td><input type="text" name="jpname" value="' + j.jpname + '"></td>';
-					html += '<td><input type="text" name="jpdesc" value="' + j.jpdesc + '"></td>';
-					html += '<td><button onclick="japanInsert()">저장</button></td>';
+					html += '<td><input type="text" name="jpname'+ j.jpnum +'" value="' + j.jpname + '"></td>';
+					html += '<td><input type="text" name="jpdesc'+ j.jpnum +'" value="' + j.jpdesc + '"></td>';
+					html += '<td><button onclick="japanUpdate('+j.jpnum+')">수정</button> <button onclick="japanDelete('+j.jpnum+')">삭제</button></td>';
 					html += '</tr>';
 				}
 				
@@ -63,7 +63,7 @@ window.addEventListener('load',function(){
 			if(xhr.readyState==4){
 				if(xhr.responseText=='1'){
 					alert('수정성공!');
-					location.href='/japan';
+					location.href='/uri/japan/list';
 				}else{
 					alert('수정실패');
 				}
@@ -98,6 +98,29 @@ window.addEventListener('load',function(){
 		html += '<td><button onclick="japanInsert()">저장</button></td>';
 		html += '</tr>';
 		document.querySelector('tbody').insertAdjacentHTML('beforeend',html);
+	}
+	
+	function japanInsert(){
+		var jpname = document.querySelector('input[name=jpname]').value;
+		var jpdesc = document.querySelector('input[name=jpdesc]').value;
+		
+		var param = {jpname:jpname,jpdesc:jpdesc};
+		var xhr = new XMLHttpRequest();
+		var url = "/japan";
+		xhr.open('POST',url);
+		xhr.setRequestHeader('Content-Type','application/json');
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4){
+				if(xhr.responseText=='1'){
+					alert('저장성공!');
+					location.href='/uri/japan/list';
+				}else{
+					alert('저장실패');
+				}
+			}
+		}
+		alert(JSON.stringify(param));
+		xhr.send(JSON.stringify(param));
 	}
 </script>
 </body>

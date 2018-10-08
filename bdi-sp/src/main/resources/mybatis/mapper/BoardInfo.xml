@@ -3,10 +3,41 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="SQL.BOARDINFO">
-  <select id="selectBoardInfo" resultType="bi">
-    select * from board_info
-  </select>
-  <insert id="insertBoardInfo" parameterType="bi">
-  	
-  </insert>
+	<select id="selectBoardInfoList" resultType="bi"
+		parameterType="bi">
+		select * from board_info
+		<where>
+			<if test="binum!=null">and binum=#{binum}</if>
+			<if test="bititle!=null">and bititle=#{bititle}</if>
+			<if test="bitext!=null">and bitext=#{bitext}</if>
+			<if test="bifile!=null">and bifile=#{bifile}</if>
+			<if test="bicredat!=null">and bicredat=#{bicredat}</if>
+			<if test="bimoddat!=null">and bimoddat=#{bimoddat}</if>
+			<if test="bicnt!=null">and bicnt=#{bicnt}</if>
+			<if test="biactive!=null">and biactive=#{biactive}</if>
+			<if test="uinum!=null">and uinum=#{uinum}</if>
+		</where>
+	</select>
+	<select id="selectBoardInfo" resultType="bi">
+		select * from board_info
+		where binum=#{binum}
+	</select>
+	<insert id="insertBoardInfo" parameterType="bi">
+	insert into board_info(bititle, bitext)
+	values(#{bititle}, #{bitext})
+	</insert>
+	
+	<update id="updateBoardInfo" parameterType="bi">
+		update board_info
+		<set>
+			<if test="bititle!=null">bititle=#{bititle},</if>
+			<if test="bitext!=null">bitext=#{bitext}</if>
+		</set>
+		where binum=#{binum}
+	</update>
+	
+	<delete id="deleteBoardInfo" parameterType="int">
+		delete from board_info
+		where binum=#{binum}
+	</delete>
 </mapper>

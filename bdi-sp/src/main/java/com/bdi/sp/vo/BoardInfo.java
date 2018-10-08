@@ -5,21 +5,18 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 @Alias("bi")
-public class BoardInfo {
+public class BoardInfo {	
 	
 	private Integer binum;
 	private String bititle;
 	private String bitext;
-	private List<Japan> jList;
+	private String bifile;
+	private String bicredat;
+	private String bimoddat;
+	private Integer bicnt;
+	private Integer biactive;
+	private Integer uinum;
 	
-	
-	
-	public List<Japan> getjList() {
-		return jList;
-	}
-	public void setjList(List<Japan> jList) {
-		this.jList = jList;
-	}
 	public Integer getBinum() {
 		return binum;
 	}
@@ -38,10 +35,47 @@ public class BoardInfo {
 	public void setBitext(String bitext) {
 		this.bitext = bitext;
 	}
-	@Override
-	public String toString() {
-		return "BoardInfo [binum=" + binum + ", bititle=" + bititle + ", bitext=" + bitext + ", jList=" + jList + "]";
+	public String getBifile() {
+		return bifile;
+	}
+	public void setBifile(String bifile) {
+		this.bifile = bifile;
+	}
+	public String getBicredat() {
+		return bicredat;
+	}
+	public void setBicredat(String bicredat) {
+		this.bicredat = bicredat;
+	}
+	public String getBimoddat() {
+		return bimoddat;
+	}
+	public void setBimoddat(String bimoddat) {
+		this.bimoddat = bimoddat;
+	}
+	public Integer getBicnt() {
+		return bicnt;
+	}
+	public void setBicnt(Integer bicnt) {
+		this.bicnt = bicnt;
+	}
+	public Integer getBiactive() {
+		return biactive;
+	}
+	public void setBiactive(Integer biactive) {
+		this.biactive = biactive;
+	}
+	public Integer getUinum() {
+		return uinum;
+	}
+	public void setUinum(Integer uinum) {
+		this.uinum = uinum;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "BoardInfo [binum=" + binum + ", bititle=" + bititle + ", bitext=" + bitext + ", bifile=" + bifile
+				+ ", bicredat=" + bicredat + ", bimoddat=" + bimoddat + ", bicnt=" + bicnt + ", biactive=" + biactive
+				+ ", uinum=" + uinum + "]";
+	}	
 }
